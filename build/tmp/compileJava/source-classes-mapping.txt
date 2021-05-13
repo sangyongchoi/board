@@ -1,0 +1,8 @@
+com/board/dev/domain/reply/entity/QReply.java
+ com.board.dev.domain.reply.entity.QReply
+com/board/dev/domain/post/entity/QPost.java
+ com.board.dev.domain.post.entity.QPost
+com/board/dev/domain/post/entity/QPost_Companion_Contents.java
+ com.board.dev.domain.post.entity.QPost_Companion_Contents
+com/board/dev/domain/user/entity/QUser.java
+ com.board.dev.domain.user.entity.QUser

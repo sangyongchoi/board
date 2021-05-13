@@ -1,0 +1,20 @@
+:snippets: ../../../build/generated-snippets
+= User
+
+== User 가입
+
+REQUEST:
+include::{snippets}/user/http-request.adoc[]
+include::{snippets}/user/request-fields.adoc[]
+
+RESPONSE:
+include::{snippets}/user/http-response.adoc[]
+
+== Post 작성
+REQUEST:
+include::{snippets}/post/http-request.adoc[]
+include::{snippets}/post/request-fields.adoc[]
+
+RESPONSE:
+include::{snippets}/post/http-response.adoc[]
+include::{snippets}/post/response-fields.adoc[]
