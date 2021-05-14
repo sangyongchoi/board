@@ -1,1 +1,5 @@
+HELP.md
+build/
 .DS_Store
+.gradle
+.idea
