@@ -90,9 +90,9 @@ internal class ReplyServiceTest {
     fun `작성자가 아닐때 삭제 실패`() {
         assertThrows<ForbiddenException> {
             val replyId = insertReply("csytest1")
-            val request = ReplyRequestDto.DeleteRequest(replyId, "csytest2")
+            val request = ReplyRequestDto.DeleteRequest(replyId)
 
-            replyService.delete(request)
+            replyService.delete("csytest2", request)
         }
     }
 
@@ -100,9 +100,9 @@ internal class ReplyServiceTest {
     @Order(6)
     fun `작성자일 때 삭제`() {
         val replyId = insertReply("csytest1")
-        val request = ReplyRequestDto.DeleteRequest(replyId, "csytest1")
+        val request = ReplyRequestDto.DeleteRequest(replyId)
 
-        replyService.delete(request)
+        replyService.delete("csytest1", request)
 
         // success
     }

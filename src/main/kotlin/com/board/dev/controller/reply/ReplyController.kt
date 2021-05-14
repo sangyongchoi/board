@@ -37,7 +37,7 @@ class ReplyController(
 
     @DeleteMapping("/reply")
     fun delete(@UserId userId: String, @RequestBody request: ReplyRequestDto.DeleteRequest): ResponseEntity<String> {
-        replyService.delete(request)
+        replyService.delete(userId, request)
 
         return ResponseEntity
             .ok()

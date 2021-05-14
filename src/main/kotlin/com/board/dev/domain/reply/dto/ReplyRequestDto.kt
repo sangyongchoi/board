@@ -14,7 +14,6 @@ object ReplyRequestDto {
     )
 
     data class DeleteRequest(
-        val replyId: Long,
-        val userId: String
+        val replyId: Long
     )
 }

@@ -36,11 +36,11 @@ class ReplyService(
         replyRepository.save(reply)
     }
 
-    fun delete(request: ReplyRequestDto.DeleteRequest) {
+    fun delete(userId: String, request: ReplyRequestDto.DeleteRequest) {
         val replyId = request.replyId
         val reply = replyRepository.findById(replyId).orElseThrow{ throw BadRequestException("존재하지 않는 댓글입니다.") }
 
-        if(!reply.isWriter(request.userId)) {
+        if(!reply.isWriter(userId)) {
             throw ForbiddenException("작성자만 삭제 가능합니다.")
         }
 
