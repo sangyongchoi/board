@@ -9,7 +9,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 
 @EnableWebSecurity
-class WebSecurityConfig: WebSecurityConfigurerAdapter() {
+class WebSecurityConfig(
+    private val jwtProvider: JwtProvider
+): WebSecurityConfigurerAdapter() {
 
     @Bean
     fun passwordEncoder(): PasswordEncoder {
@@ -32,5 +34,6 @@ class WebSecurityConfig: WebSecurityConfigurerAdapter() {
         // Login 설정
         http
             .formLogin()
+                .successHandler(LoginSuccessHandler(jwtProvider))
     }
 }
