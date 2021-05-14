@@ -1,8 +1,9 @@
 package com.board.dev.security
 
-import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
+import org.springframework.security.core.Authentication
 import org.springframework.stereotype.Component
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -19,17 +20,36 @@ class JwtProvider {
     }
 
     fun createToken(userId: String): String? {
-        val payloads: Claims = Jwts.claims()
         val now = LocalDateTime.now().atZone(ZoneId.of(TIME_ZONE_KST))
         val expiredDate = Date.from(now.plusMinutes(60L).toInstant())
 
-        payloads["userId"] = userId
-
         return Jwts.builder()
-            .setClaims(payloads)
             .setSubject(userId)
             .setExpiration(expiredDate)
             .signWith(SignatureAlgorithm.HS256, secretKey.toByteArray())
             .compact()
+    }
+
+    fun getAuthentication(token: String): Authentication {
+        val userId = getUserId(token)
+
+        return UsernamePasswordAuthenticationToken(null, userId, null)
+    }
+
+    private fun getUserId(token: String): String {
+        return Jwts
+            .parser()
+            .setSigningKey(secretKey.toByteArray())
+            .parseClaimsJws(token)
+            .body
+            .subject
+    }
+
+    fun validateToken(token: String?): Boolean {
+        Jwts.parser()
+            .setSigningKey(secretKey.toByteArray())
+            .parseClaimsJws(token)
+
+        return  true
     }
 }
