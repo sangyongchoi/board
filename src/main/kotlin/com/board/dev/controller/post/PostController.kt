@@ -1,5 +1,6 @@
 package com.board.dev.controller.post
 
+import com.board.dev.common.config.argument.UserId
 import com.board.dev.common.dto.PageResponse
 import com.board.dev.domain.post.entity.Post
 import com.board.dev.domain.post.service.PostService
@@ -39,8 +40,8 @@ class PostController(
     }
 
     @PutMapping("/post")
-    fun modify(@RequestBody request: PostRequestDto.ModifyRequest): ResponseEntity<String> {
-        postService.modify(request)
+    fun modify(@UserId userId: String, @RequestBody request: PostRequestDto.ModifyRequest): ResponseEntity<String> {
+        postService.modify(request, userId)
 
         return ResponseEntity
             .ok()

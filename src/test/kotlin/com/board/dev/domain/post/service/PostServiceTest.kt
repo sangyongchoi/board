@@ -93,9 +93,9 @@ internal class PostServiceTest {
     fun `작성자가 아닐때 글 수정 실패`() {
         assertThrows<ForbiddenException> {
             val postId = insertPost("csytest1", 20)
-            val request = PostRequestDto.ModifyRequest(postId, "csytest2", 30, LocalDateTime.now(), LocalDateTime.now(), "123123")
+            val request = PostRequestDto.ModifyRequest(postId, 30, LocalDateTime.now(), LocalDateTime.now(), "123123")
 
-            postService.modify(request)
+            postService.modify(request, "csytest2")
         }
     }
 
@@ -103,9 +103,9 @@ internal class PostServiceTest {
     @Order(6)
     fun `작성자일 때 글 수정`() {
         val postId = insertPost("csytest1", 20)
-        val request = PostRequestDto.ModifyRequest(postId, "csytest1", 30, LocalDateTime.now(), LocalDateTime.now(), "123123")
+        val request = PostRequestDto.ModifyRequest(postId, 30, LocalDateTime.now(), LocalDateTime.now(), "123123")
 
-        postService.modify(request)
+        postService.modify(request, "csytest1")
 
         // success
     }

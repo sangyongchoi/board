@@ -20,7 +20,6 @@ object PostRequestDto {
 
     data class ModifyRequest(
         val postId: Long,
-        val userId: String,
         val homeSize: Int,
         val startDate: LocalDateTime,
         val endDate: LocalDateTime,

@@ -25,11 +25,10 @@ class PostService(
         return postRepository.findAll(pageable)
     }
 
-    fun modify(request: PostRequestDto.ModifyRequest) {
+    fun modify(request: PostRequestDto.ModifyRequest, userId: String) {
         val post = postRepository.findById(request.postId)
             .orElseThrow{ throw BadRequestException("존재하지 않는 게시글입니다.") }
 
-        val userId = request.userId
         val homeSize = request.homeSize
         val startDate = request.startDate
         val endDate = request.endDate
