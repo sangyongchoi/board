@@ -68,9 +68,9 @@ internal class ReplyServiceTest {
     fun `작성자가 아닐때 수정 실패`() {
         assertThrows<ForbiddenException> {
             val replyId = insertReply("csytest1")
-            val request = ReplyRequestDto.ModifyRequest(replyId, "csytest2", "ddd")
+            val request = ReplyRequestDto.ModifyRequest(replyId,  "ddd")
 
-            replyService.modify(request)
+            replyService.modify(request, "csytest2")
         }
     }
 
@@ -78,9 +78,9 @@ internal class ReplyServiceTest {
     @Order(4)
     fun `작성자일 때 수정`() {
         val replyId = insertReply("csytest1")
-        val request = ReplyRequestDto.ModifyRequest(replyId, "csytest1", "ddd")
+        val request = ReplyRequestDto.ModifyRequest(replyId, "ddd")
 
-        replyService.modify(request)
+        replyService.modify(request, "csytest1")
 
         // success
     }

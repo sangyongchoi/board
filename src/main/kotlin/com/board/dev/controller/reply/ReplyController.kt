@@ -1,5 +1,6 @@
 package com.board.dev.controller.reply
 
+import com.board.dev.common.config.argument.UserId
 import com.board.dev.common.dto.PageResponse
 import com.board.dev.domain.reply.dto.ReplyRequestDto
 import com.board.dev.domain.reply.dto.ReplyResponseDto
@@ -26,8 +27,8 @@ class ReplyController(
     }
 
     @PutMapping("/reply")
-    fun modify(@RequestBody request: ReplyRequestDto.ModifyRequest): ResponseEntity<String> {
-        replyService.modify(request)
+    fun modify(@UserId userId: String, @RequestBody request: ReplyRequestDto.ModifyRequest): ResponseEntity<String> {
+        replyService.modify(request, userId)
 
         return ResponseEntity
             .ok()
@@ -35,7 +36,7 @@ class ReplyController(
     }
 
     @DeleteMapping("/reply")
-    fun delete(@RequestBody request: ReplyRequestDto.DeleteRequest): ResponseEntity<String> {
+    fun delete(@UserId userId: String, @RequestBody request: ReplyRequestDto.DeleteRequest): ResponseEntity<String> {
         replyService.delete(request)
 
         return ResponseEntity

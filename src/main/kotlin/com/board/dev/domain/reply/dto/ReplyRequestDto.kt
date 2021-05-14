@@ -10,7 +10,6 @@ object ReplyRequestDto {
 
     data class ModifyRequest(
         val replyId: Long,
-        val userId: String,
         val contents: String
     )
 

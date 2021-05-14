@@ -27,10 +27,10 @@ class ReplyService(
 
     fun findRepliesByPostId(postId: Long, pageable: Pageable) = replyRepository.findByPostId(postId, pageable)
 
-    fun modify(request: ReplyRequestDto.ModifyRequest) {
-        val reply = replyRepository.findById(request.replyId).orElseThrow{ throw BadRequestException("존재하지 않는 댓글입니다.") }
+    fun modify(request: ReplyRequestDto.ModifyRequest, userId: String) {
+        val reply = replyRepository.findById(request.replyId)
+            .orElseThrow{ throw BadRequestException("존재하지 않는 댓글입니다.") }
 
-        val userId = request.userId
         val contents = request.contents
         reply.changeContents(userId, contents)
         replyRepository.save(reply)
