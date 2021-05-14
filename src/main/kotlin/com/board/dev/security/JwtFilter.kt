@@ -12,7 +12,7 @@ class JwtFilter(
     private val jwtProvider: JwtProvider
 ): OncePerRequestFilter() {
 
-    val skipUrlList = listOf("/signup", "/login")
+    private val skipUrlList = listOf("/signup", "/login")
 
     override fun doFilterInternal(request: HttpServletRequest, response: HttpServletResponse, filterChain: FilterChain) {
         val token: String = resolveToken(request)
