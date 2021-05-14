@@ -1,5 +1,0 @@
-[source,bash]
-----
-$ echo '{"writerId":"test","homeSize":10,"startDate":"2021-05-13T16:09:45.563302","endDate":"2021-05-13T16:09:45.563329","requirements":"테스트"}' | http POST 'http://localhost:8080/write' \
-    'Content-Type:application/json;charset=UTF-8'
-----

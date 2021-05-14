@@ -1,6 +1,0 @@
-[source,bash]
-----
-$ curl 'http://localhost:8080/signup' -i -X POST \
-    -H 'Content-Type: application/json;charset=UTF-8' \
-    -d '{"id":"ddd","password":"ddd","name":"ddd","type":0}'
-----

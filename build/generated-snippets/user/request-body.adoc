@@ -1,4 +1,0 @@
-[source,options="nowrap"]
-----
-{"id":"ddd","password":"ddd","name":"ddd","type":0}
-----
