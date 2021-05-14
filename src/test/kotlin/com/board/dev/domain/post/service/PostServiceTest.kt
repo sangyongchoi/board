@@ -115,9 +115,9 @@ internal class PostServiceTest {
     fun `작성자가 아닐때 글 삭제 실패`() {
         assertThrows<ForbiddenException> {
             val postId = insertPost("csytest1", 20)
-            val request = PostRequestDto.DeleteRequest(postId, "csytest2")
+            val request = PostRequestDto.DeleteRequest(postId)
 
-            postService.delete(request)
+            postService.delete(request, "csytest2")
         }
     }
 
@@ -125,9 +125,9 @@ internal class PostServiceTest {
     @Order(8)
     fun `작성자일 때 글 삭제`() {
         val postId = insertPost("csytest1", 20)
-        val request = PostRequestDto.DeleteRequest(postId, "csytest1")
+        val request = PostRequestDto.DeleteRequest(postId)
 
-        postService.delete(request)
+        postService.delete(request, "csytest1")
 
         // success
     }

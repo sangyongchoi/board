@@ -49,8 +49,8 @@ class PostController(
     }
 
     @DeleteMapping("/post")
-    fun delete(@RequestBody request: PostRequestDto.DeleteRequest): ResponseEntity<String> {
-        postService.delete(request)
+    fun delete(@UserId userId: String, @RequestBody request: PostRequestDto.DeleteRequest): ResponseEntity<String> {
+        postService.delete(request, userId)
 
         return ResponseEntity
             .ok()

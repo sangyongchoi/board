@@ -27,7 +27,6 @@ object PostRequestDto {
     )
 
     data class DeleteRequest(
-        val postId: Long,
-        val userId: String
+        val postId: Long
     )
 }

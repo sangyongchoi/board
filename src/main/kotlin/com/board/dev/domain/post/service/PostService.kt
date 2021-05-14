@@ -40,12 +40,12 @@ class PostService(
         postRepository.save(post)
     }
 
-    fun delete(request: PostRequestDto.DeleteRequest) {
+    fun delete(request: PostRequestDto.DeleteRequest, userId: String) {
         val postId = request.postId
         val post = postRepository.findById(postId)
             .orElseThrow{ throw BadRequestException("존재하지 않는 게시글입니다.") }
 
-        if(!post.isWriter(request.userId)) {
+        if(!post.isWriter(userId)) {
             throw ForbiddenException("글 작성자만 삭제 가능합니다.")
         }
 
